@@ -1,5 +1,17 @@
 # python manage.py generate_profile
+"""
+Management command to generate demo data for the Kudos application.
 
+This command populates the database with:
+- A predefined set of organizations.
+- Random users assigned to those organizations.
+- (Optionally) random Kudos exchanged between users.
+
+Usage:
+    python manage.py generate_profile
+
+Intended for use in development, testing, or demo environments.
+"""
 from django.core.management.base import BaseCommand
 from Kudos.models import User, Organization, Kudo
 from faker import Faker
@@ -7,20 +19,31 @@ import random
 
 class Command(BaseCommand):
     """
-    Django custom management command to generate demo data.
-    It creates:
-    - Sample organizations
-    - Random users with fake usernames
-    - (Optionally) random kudos between users
+    Django custom management command to generate demo data for Kudos.
+
+    Functionality:
+        - Deletes existing data from Organization, User, and Kudo models.
+        - Creates a set of predefined organizations.
+        - Generates fake users using the Faker library and assigns them to organizations.
+        - (Optionally) generates random kudos between users.
+
+    The command prints the created usernames and passwords for easy testing.
     """
 
     help = 'Generate demo data for testing or demo purposes.'
 
     def handle(self, *args, **kwargs):
         """
-        Main logic for generating demo data.
-        Deletes existing records and repopulates the database
-        with fake users and organizations.
+        Executes the data generation process.
+
+        Steps:
+            1. Deletes all existing Kudo, User, and Organization records.
+            2. Creates predefined organizations (Mitratech, Deloitte, Capgemini).
+            3. Generates 7 users with fake usernames and a common demo password.
+            4. Optionally, generates 10 random Kudos between users (currently commented out).
+
+        Outputs:
+            Prints created users (username/password) to console.
         """
         fake = Faker()
 
@@ -38,7 +61,7 @@ class Command(BaseCommand):
         users = []
 
         # Step 3: Create fake users and assign them to random organizations
-        for _ in range(7):
+        for _ in range(11):
             username = fake.user_name()
             password = "test1234"  # Use a common password for demo users
             org = random.choice(orgs)
