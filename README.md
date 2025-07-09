@@ -42,7 +42,7 @@ Run the following commands in your terminal:
 - python manage.py generate_profile    [Generate demo data (users, orgs)]
 - python manage.py createsuperuser     [Create an admin user (optional)]
 - python manage.py runserver           [Run the development server]
-Visit the app at: http://127.0.0.1:8000/
+- Visit the app at: http://127.0.0.1:8000/
 
 
 ### 🧠 Python Scripts Overview
@@ -50,30 +50,30 @@ Visit the app at: http://127.0.0.1:8000/
 # views.py
 Defines all the core API endpoints using Django REST Framework:
 
-HomePageView: Loads the landing page.
-SignupView: Handles user registration.
-LoginView: Handles login via username/password.
-LogoutView: Logs out the user.
-MeView: Returns the authenticated user's profile info.
-KudosReceivedView: Lists kudos the user has received.
-KudosGivenView: Lists kudos the user has given.
-GiveKudoView: Validates and sends a new kudo (3 per week limit).
+- HomePageView: Loads the landing page.
+- SignupView: Handles user registration.
+- LoginView: Handles login via username/password.
+- LogoutView: Logs out the user.
+- MeView: Returns the authenticated user's profile info.
+- KudosReceivedView: Lists kudos the user has received.
+- KudosGivenView: Lists kudos the user has given.
+- GiveKudoView: Validates and sends a new kudo (3 per week limit).
 
 # serializers.py
 Defines data validation and serialization logic:
 
-SignupSerializer: Validates and creates new users.
-LoginSerializer: Authenticates users using credentials.
-KudoSerializer: Read-only view of kudos (sender, receiver, message).
-GiveKudoSerializer: Validates rules for sending kudos.
-UserSerializer: Displays user info and kudos left this week.
+- SignupSerializer: Validates and creates new users.
+- LoginSerializer: Authenticates users using credentials.
+- KudoSerializer: Read-only view of kudos (sender, receiver, message).
+- GiveKudoSerializer: Validates rules for sending kudos.
+- UserSerializer: Displays user info and kudos left this week.
 
 # models.py
 Defines the core database models:
 
-Organization: Represents a company or group.
-User: Custom user model linked to an organization.
-Kudo: Represents a kudo (sender, receiver, message, timestamp).
+- Organization: Represents a company or group.
+- User: Custom user model linked to an organization.
+- Kudo: Represents a kudo (sender, receiver, message, timestamp).
 
 # urls.py
 Maps HTTP endpoints to views:
@@ -91,8 +91,8 @@ Maps HTTP endpoints to views:
 # generate_profile.py
 A custom Django management command to generate demo data:
 
-Clears all existing users, kudos, and organizations.
-Creates sample organizations.
-Creates fake users using Faker.
-(Optional) Can auto-generate random kudos between users.
-Run it using: python manage.py generate_profile
+- Clears all existing users, kudos, and organizations.
+- Creates sample organizations.
+- Creates fake users using Faker.
+- (Optional) Can auto-generate random kudos between users.
+- Run it using: python manage.py generate_profile
