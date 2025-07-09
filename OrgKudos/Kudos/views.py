@@ -66,7 +66,9 @@ class SignupView(generics.CreateAPIView):
         serializer = SignupSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-            return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
+            messages.success(request, "User profile created successfully")
+            return redirect('/Kudos/')
+            # return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(generics.CreateAPIView):
