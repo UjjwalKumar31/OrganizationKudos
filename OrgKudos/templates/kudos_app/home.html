@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Django App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Oranization's Kudos App</h1>
+
+    <!-- Always show Logout if logged in -->
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="button" target="_blank">Logout</a>
+        <a href="{% url 'me' %}" class="button">My Profile</a>
+        <a href="{% url 'kudos-received' %}" class="button">Kudos Received</a>
+        <a href="{% url 'kudos-given' %}" class="button">Kudos Given</a>
+        <a href="{% url 'give-kudo' %}" class="button">Give Kudo</a>
+    {% else %}
+        <a href="{% url 'signup' %}" class="button">Signup</a>
+        <a href="{% url 'login' %}" class="button">Login</a>
+    {% endif %}
+
+
+    {% if messages %}
+    <p>
+        {% for message in messages %}
+        <li style="color:
+                    {% if message.tags == 'info' %}blue
+                    {% elif message.tags == 'success' %}green
+                    {% elif message.tags == 'warning' %}orange
+                    {% elif message.tags == 'error' %}red
+                    {% else %}black
+                    {% endif %};">
+            {{ message }}
+        </li>
+        {% endfor %}
+    </p>
+    {% endif %}
+
+
+</body>
+</html>
